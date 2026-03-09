@@ -13,6 +13,8 @@ public class DashboardPage extends AbstractPageObject {
     private final By PASSWORD = By.id("password");
     private final By LOGIN_BUTTON = By.cssSelector("button.button.green.full[data-clarity-label='clicked_button_login']");
     private final By LOADING_INDICATOR = By.cssSelector("svg[viewBox='0 0 4 18']");
+    private final By SESSIONS_LINK = By.cssSelector("a[data-clarity-label='clicked_sideMenu_sessions']");
+
 
     public DashboardPage(String baseUrl, String path, WebDriver driver, int waitTimeOutSeconds) {
         super(path, driver, waitTimeOutSeconds);
