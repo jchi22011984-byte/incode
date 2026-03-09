@@ -1,6 +1,7 @@
 package com.incode.qa.ui;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -27,12 +28,12 @@ public class DashboardPage extends AbstractPageObject {
     public void loginWithRetry(String email, String password) {
         retryUntil(() -> {
             setText(find(USER_NAME), email);
+            find(USER_NAME).sendKeys(Keys.TAB);
             setText(find(PASSWORD), password);
-
             WebElement btn = waitUntilTrueOrTimeout(ExpectedConditions.elementToBeClickable(LOGIN_BUTTON));
             btn.click();
-
             return waitUntilTrueOrTimeout(ExpectedConditions.visibilityOfElementLocated(LOADING_INDICATOR)) != null;
         }, 10);
     }
+
 }
