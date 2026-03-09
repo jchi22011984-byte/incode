@@ -19,6 +19,7 @@ public abstract class AbstractPageObject {
         this.path = path;
         this.driver = driver;
         this.waitTimeOutSeconds = waitTimeOutSeconds;
+        this.driver.manage().window().maximize();
     }
 
     public void goToAndWait() {
