@@ -8,15 +8,28 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.Normalizer;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 public class Steps {
 
     @Autowired
     private DashboardPage dashboardPage;
     @Autowired
     private SessionsPage sessionsPage;
-
     @Autowired
     private ApplicationProperties applicationProperties;
+
+    private String nameFromTable;
+
+    private String normalize(String input) {
+        return Normalizer.normalize(input, Normalizer.Form.NFD)
+                .replaceAll("\\p{M}", "")
+                .toUpperCase()
+                .trim();
+    }
 
     @Given("I go to the base login page")
     public void go_to_base_login_page() {
@@ -33,20 +46,29 @@ public class Steps {
 
     @When("I navigate to the sessions page")
     public void i_navigate_to_the_sessions_page() {
-       dashboardPage.goToSessionsPage();
+        dashboardPage.goToSessionsPage();
     }
+
     @When("I open a single session")
     public void i_open_a_single_session() {
+        nameFromTable = sessionsPage.getFirstNameFromTable();
+        System.out.println(nameFromTable);
         sessionsPage.clickFirstSessionId();
     }
+
     @Then("I should see that the NAME from the table")
     public void i_should_see_that_the_name_from_the_table() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        assertNotNull("The name from the table was not captured correctly.", nameFromTable);
     }
+
     @Then("the FULL NAME \\(OCR) value inside the session are exactly the same")
     public void the_full_name_ocr_value_inside_the_session_are_exactly_the_same() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        String ocrName = sessionsPage.getOcrFullNameFromDetails();
+
+        assertEquals(
+                "The name in the table does not match the OCR name in details.",
+                normalize(nameFromTable),
+                normalize(ocrName)
+        );
     }
 }
