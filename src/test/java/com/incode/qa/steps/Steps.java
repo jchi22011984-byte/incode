@@ -2,6 +2,7 @@ package com.incode.qa.steps;
 
 import com.incode.qa.config.ApplicationProperties;
 import com.incode.qa.ui.DashboardPage;
+import com.incode.qa.ui.SessionsPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,6 +12,8 @@ public class Steps {
 
     @Autowired
     private DashboardPage dashboardPage;
+    @Autowired
+    private SessionsPage sessionsPage;
 
     @Autowired
     private ApplicationProperties applicationProperties;
@@ -26,12 +29,6 @@ public class Steps {
                 applicationProperties.getEmail(),
                 applicationProperties.getPassword()
         );
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-
-        }
     }
 
     @When("I navigate to the sessions page")
@@ -40,8 +37,7 @@ public class Steps {
     }
     @When("I open a single session")
     public void i_open_a_single_session() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        sessionsPage.clickFirstSessionId();
     }
     @Then("I should see that the NAME from the table")
     public void i_should_see_that_the_name_from_the_table() {

@@ -2,6 +2,7 @@ package com.incode.qa.config;
 
 import com.incode.qa.ioc.HelloWorld;
 import com.incode.qa.ui.DashboardPage;
+import com.incode.qa.ui.SessionsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +36,15 @@ public class TestConfig {
                 applicationProperties.getWaitTimeSeconds()
         );
     }
+
+    @Bean
+    public SessionsPage sessionsPage(WebDriver driver) {
+        return new SessionsPage(
+                applicationProperties.getBaseUrl(),
+                "/session",
+                driver,
+                applicationProperties.getWaitTimeSeconds()
+        );
+    }
+
 }

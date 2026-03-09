@@ -106,4 +106,14 @@ public abstract class AbstractPageObject {
             }
         }
     }
+
+    public void click(WebElement element) {
+        scrollIntoView(element);
+        try {
+            waitUntilTrueOrTimeout(ExpectedConditions.elementToBeClickable(element));
+            element.click();
+        } catch (WebDriverException e) {
+            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", element);
+        }
+    }
 }
