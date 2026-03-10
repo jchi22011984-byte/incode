@@ -6,9 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class SessionsPage extends AbstractPageObject {
     private final String baseUrl;
 
-    private final By rowLocator = By.xpath("//td[@data-clarity-label='clicked_item_sessions_sessionId' and normalize-space(text())='69af44ce8d1257639725d156']/ancestor::tr[@class='session-row']");
     private final By firstRowNameLocator = By.xpath("//td[contains(.,'Hernandez')]");
-
     private final By ocrFullNameLocator = By.xpath("//h5[contains(text(),'Nombre completo (OCR)')]/following-sibling::span[contains(@class, 'content')]");
 
     public SessionsPage(String baseUrl, String path, WebDriver driver, int waitTimeOutSeconds) {
@@ -16,12 +14,17 @@ public class SessionsPage extends AbstractPageObject {
         this.baseUrl = baseUrl;
     }
 
-    public void clickFirstSessionId() {
-        WebElement firstRow = waitUntilTrueOrTimeout(ExpectedConditions.visibilityOfElementLocated(rowLocator));
-        click(firstRow);
+    private By buildRowLocator(String sessionId) {
+        return By.xpath("//td[@data-clarity-label='clicked_item_sessions_sessionId' " +
+                "and normalize-space(text())='" + sessionId + "']/ancestor::tr[@class='session-row']");
     }
 
-    public String getFirstNameFromTable() {
+    public void clickSessionById(String sessionId) {
+        WebElement row = waitUntilTrueOrTimeout(ExpectedConditions.visibilityOfElementLocated(buildRowLocator(sessionId)));
+        click(row);
+    }
+
+    public String getFirstNameFromTable(String sessionId) {
         return waitUntilTrueOrTimeout(ExpectedConditions.visibilityOfElementLocated(firstRowNameLocator))
                 .getText()
                 .trim();
@@ -33,8 +36,8 @@ public class SessionsPage extends AbstractPageObject {
                 .trim();
     }
 
-    public boolean isTableNameEqualToOcrName() {
-        String tableName = getFirstNameFromTable();
+    public boolean isTableNameEqualToOcrName(String sessionId) {
+        String tableName = getFirstNameFromTable(sessionId);
         String ocrName = getOcrFullNameFromDetails();
         return tableName.equalsIgnoreCase(ocrName);
     }

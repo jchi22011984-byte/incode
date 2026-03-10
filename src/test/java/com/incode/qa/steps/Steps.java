@@ -49,10 +49,10 @@ public class Steps {
         dashboardPage.goToSessionsPage();
     }
 
-    @When("I open a single session")
-    public void i_open_a_single_session() {
-        nameFromTable = sessionsPage.getFirstNameFromTable();
-        sessionsPage.clickFirstSessionId();
+    @When("I open a single session {string}")
+    public void i_open_a_single_session(String sessionId) {
+        nameFromTable = sessionsPage.getFirstNameFromTable(sessionId);
+        sessionsPage.clickSessionById(sessionId);
     }
 
     @Then("I should see that the NAME from the table")
