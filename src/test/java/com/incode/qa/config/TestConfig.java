@@ -2,6 +2,7 @@ package com.incode.qa.config;
 
 import com.incode.qa.ioc.HelloWorld;
 import com.incode.qa.ui.DashboardPage;
+import com.incode.qa.ui.IdentitiesPage;
 import com.incode.qa.ui.SessionsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -47,4 +48,13 @@ public class TestConfig {
         );
     }
 
+    @Bean
+    public IdentitiesPage identitiesPage(WebDriver driver) {
+        return new IdentitiesPage(
+                applicationProperties.getBaseUrl(),
+                "/identities",
+                driver,
+                applicationProperties.getWaitTimeSeconds()
+        );
+    }
 }

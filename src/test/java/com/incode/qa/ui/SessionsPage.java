@@ -9,6 +9,10 @@ public class SessionsPage extends AbstractPageObject {
     private final By firstRowNameLocator = By.xpath("//td[contains(.,'Hernandez')]");
     private final By ocrFullNameLocator = By.xpath("//h5[contains(text(),'Nombre completo (OCR)')]/following-sibling::span[contains(@class, 'content')]");
 
+    private final By addFaceButtonLocator = By.xpath("//button[@data-clarity-label='clicked_button_singleSession_addFaceToDatabase']");
+    private final By identitiesLink = By.xpath("//a[@data-clarity-label='clicked_sideMenu_identities']");
+
+
     public SessionsPage(String baseUrl, String path, WebDriver driver, int waitTimeOutSeconds) {
         super(path, driver, waitTimeOutSeconds);
         this.baseUrl = baseUrl;
@@ -40,5 +44,14 @@ public class SessionsPage extends AbstractPageObject {
         String tableName = getFirstNameFromTable(sessionId);
         String ocrName = getOcrFullNameFromDetails();
         return tableName.equalsIgnoreCase(ocrName);
+    }
+
+    public void clickAddFaceButton() {
+        clickWithRetry(addFaceButtonLocator, 10);
+    }
+
+    public void clickIdentitiesLink() {
+        WebElement link = waitUntilTrueOrTimeout(ExpectedConditions.elementToBeClickable(identitiesLink));
+        click(link);
     }
 }

@@ -116,4 +116,24 @@ public abstract class AbstractPageObject {
             ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", element);
         }
     }
+
+    public void clickWithRetry(By locator, int maxAttempts) {
+        retryUntil(() -> {
+            try {
+                WebElement element = waitUntilTrueOrTimeout(ExpectedConditions.elementToBeClickable(locator));
+                scrollIntoView(element);
+                element.click();
+                return true; // éxito
+            } catch (WebDriverException e) {
+                try {
+                    WebElement element = find(locator);
+                    ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", element);
+                    return true; // éxito con JS
+                } catch (Exception inner) {
+                    return false; // reintentar
+                }
+            }
+        }, maxAttempts);
+    }
+
 }

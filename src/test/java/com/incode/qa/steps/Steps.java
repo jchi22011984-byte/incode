@@ -2,7 +2,9 @@ package com.incode.qa.steps;
 
 import com.incode.qa.config.ApplicationProperties;
 import com.incode.qa.ui.DashboardPage;
+import com.incode.qa.ui.IdentitiesPage;
 import com.incode.qa.ui.SessionsPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -19,6 +21,8 @@ public class Steps {
     private DashboardPage dashboardPage;
     @Autowired
     private SessionsPage sessionsPage;
+    @Autowired
+    private IdentitiesPage identitiesPage;
     @Autowired
     private ApplicationProperties applicationProperties;
 
@@ -69,5 +73,19 @@ public class Steps {
                 normalize(nameFromTable),
                 normalize(ocrName)
         );
+    }
+
+    @And("I click on Add face to database")
+    public void iClickOnAddFaceToDatabase() {
+        sessionsPage.clickAddFaceButton();
+    }
+
+    @When("I navigate to the identities page")
+    public void i_navigate_to_the_identities_page() {
+       sessionsPage.clickIdentitiesLink();
+    }
+    @Then("I should see that the identity is present in the list {string}")
+    public void i_should_see_that_the_identity_is_present_in_the_list(String id) {
+        identitiesPage.clickIdentityById(id);
     }
 }
