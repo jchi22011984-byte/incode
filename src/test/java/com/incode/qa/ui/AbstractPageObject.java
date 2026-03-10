@@ -22,8 +22,8 @@ public abstract class AbstractPageObject {
         this.driver.manage().window().maximize();
     }
 
-    public void goToAndWait() {
-        getDriver().navigate().to(path);
+    public void goToAndWait(String baseUrl) {
+        getDriver().navigate().to(baseUrl + path);
         ensureIsCurrent();
     }
 

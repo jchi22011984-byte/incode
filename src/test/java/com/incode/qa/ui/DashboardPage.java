@@ -14,6 +14,7 @@ public class DashboardPage extends AbstractPageObject {
     private final By LOADING_INDICATOR = By.cssSelector("svg[viewBox='0 0 4 18']");
     private final By SESSIONS_LINK = By.cssSelector("a[data-clarity-label='clicked_sideMenu_sessions']");
     private final By MENU_BUTTON = By.cssSelector("button.menuNav.show[aria-controls='primary-navigation']");
+    private final By FLOWS = By.xpath("//a[@href='/flows' and @data-clarity-label='clicked_sideMenu_flows']");
 
     public DashboardPage(String baseUrl, String path, WebDriver driver, int waitTimeOutSeconds) {
         super(path, driver, waitTimeOutSeconds);
@@ -43,5 +44,10 @@ public class DashboardPage extends AbstractPageObject {
     public void goToSessionsPage() {
         openMenu();
         waitUntilTrueOrTimeout(ExpectedConditions.elementToBeClickable(SESSIONS_LINK)).click();
+    }
+
+    public void goToFlowsPage() {
+        openMenu();
+        waitUntilTrueOrTimeout(ExpectedConditions.elementToBeClickable(FLOWS)).click();
     }
 }

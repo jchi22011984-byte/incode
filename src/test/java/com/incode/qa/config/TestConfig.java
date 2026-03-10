@@ -2,6 +2,7 @@ package com.incode.qa.config;
 
 import com.incode.qa.ioc.HelloWorld;
 import com.incode.qa.ui.DashboardPage;
+import com.incode.qa.ui.FlowsPage;
 import com.incode.qa.ui.IdentitiesPage;
 import com.incode.qa.ui.SessionsPage;
 import org.openqa.selenium.WebDriver;
@@ -53,6 +54,17 @@ public class TestConfig {
         return new IdentitiesPage(
                 applicationProperties.getBaseUrl(),
                 "/identities",
+                driver,
+                applicationProperties.getWaitTimeSeconds()
+        );
+    }
+
+
+    @Bean
+    public FlowsPage flowsPage(WebDriver driver) {
+        return new FlowsPage(
+                applicationProperties.getBaseUrl(),
+                "/flows",
                 driver,
                 applicationProperties.getWaitTimeSeconds()
         );
