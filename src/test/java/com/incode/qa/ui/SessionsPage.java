@@ -6,8 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class SessionsPage extends AbstractPageObject {
     private final String baseUrl;
 
-    private final By rowLocator = By.xpath("//td[@data-clarity-label='clicked_item_sessions_sessionId']/ancestor::tr");
-    private final By firstRowNameLocator = By.xpath("(//tr[@class='session-row'])[1]/td[contains(text(),'Hernandez')]");
+    private final By rowLocator = By.xpath("//td[@data-clarity-label='clicked_item_sessions_sessionId' and normalize-space(text())='69af44ce8d1257639725d156']/ancestor::tr[@class='session-row']");
+    private final By firstRowNameLocator = By.xpath("//td[contains(.,'Hernandez')]");
 
     private final By ocrFullNameLocator = By.xpath("//h5[contains(text(),'Nombre completo (OCR)')]/following-sibling::span[contains(@class, 'content')]");
 

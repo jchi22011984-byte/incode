@@ -52,7 +52,6 @@ public class Steps {
     @When("I open a single session")
     public void i_open_a_single_session() {
         nameFromTable = sessionsPage.getFirstNameFromTable();
-        System.out.println(nameFromTable);
         sessionsPage.clickFirstSessionId();
     }
 
