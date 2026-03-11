@@ -127,7 +127,7 @@ open target/cucumber-reports/cucumber-report.html
 
 * **Expected Behavior:** Text displayed clearly without overlap.
 * **Actual Behavior:** Text overlaps in the session view.
-* **Attachment:** `![img.png](img.png)`
+* **Attachment:** ![img_2.png](img_2.png)
 
 ### 3. Wrong Localisation on Sessions
 
@@ -140,7 +140,7 @@ open target/cucumber-reports/cucumber-report.html
 
 * **Expected Behavior:** Correct localisation: "Sesiones > Información de la Sesión".
 * **Actual Behavior:** Wrong localisation: "Sesiónes > Información de la Sesión".
-* **Attachment:** `![img_1.png](img_1.png)`
+* **Attachment:** ![img_3.png](img_3.png)
 
 ### 4. Default Session - Flow Bind
 
