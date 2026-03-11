@@ -1,6 +1,3 @@
-Here’s your README in one clean, easy-to-copy block:
-
-```markdown
 # Incode Test Automation Project
 
 ## 🛠️ Prerequisites
