@@ -91,3 +91,23 @@ open target/cucumber-reports/cucumber-report.html
 **Expected Behavior:**
 - Flow saved successfully
 - Flow assigned a **unique default name** (e.g., auto-incremented naming)
+
+### Overlapping Text on Sessions (Facial Recognition Flow)
+**Problem:** Text overlaps in session details view.
+
+**Steps to Reproduce:**
+1. Go to [demo-dashboard](https://demo-dashboard.incode.com/log-in)
+2. Sign in with:
+    - Username: `ilija.andic+1@incode.com`
+    - Password: `]kU3*i6|m(=ZdVE`
+3. Open hamburger menu (ellipsis, upper left)
+4. Select **Sessions**
+5. Access session with ID: `69b03c26eb15bb76349c83f4`
+
+**Expected Behavior:**
+- Text displayed clearly without overlap
+
+**Actual Behavior:**
+- Text overlaps in the session view  
+
+![img.png](img.png)
