@@ -111,3 +111,23 @@ open target/cucumber-reports/cucumber-report.html
 - Text overlaps in the session view  
 
 ![img.png](img.png)
+
+### Wrong Localisation on Sessions (Facial Recognition Flow)
+**Problem:** Incorrect stress in Spanish word "Sesiónes" — should be "Sesiones".
+
+**Steps to Reproduce:**
+1. Go to [demo-dashboard](https://demo-dashboard.incode.com/log-in)
+2. Sign in with:
+    - Username: `ilija.andic+1@incode.com`
+    - Password: `]kU3*i6|m(=ZdVE`
+3. Open hamburger menu (ellipsis, upper left)
+4. Select **Sessions**
+5. Access session with ID: `69b03c26eb15bb76349c83f4`
+
+**Expected Behavior:**
+- Correct localisation: "Sesiones > Información de la Sesión"
+
+**Actual Behavior:**
+- Wrong localisation: "Sesiónes > Información de la Sesión"  
+
+![img_1.png](img_1.png)
