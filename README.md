@@ -131,3 +131,24 @@ open target/cucumber-reports/cucumber-report.html
 - Wrong localisation: "Sesiónes > Información de la Sesión"  
 
 ![img_1.png](img_1.png)
+
+
+### Default Session - Flow Bind (Facial Recognition Flow)
+**Problem:** System always defaults to a specific session ID with no clear indication.
+
+**Steps to Reproduce:**
+1. Go to [demo-dashboard](https://demo-dashboard.incode.com/log-in)
+2. Sign in with:
+   - Username: `ilija.andic+1@incode.com`
+   - Password: `]kU3*i6|m(=ZdVE`
+3. Open hamburger menu (ellipsis, upper left)
+4. Select **Sessions**
+5. Attempt to access session details
+
+**Expected Behavior:**
+- User is redirected to the correct, relevant session ID associated with their action.
+
+**Actual Behavior:**
+- System always defaults to:  
+  `https://demo-dashboard.incode.com/single-session/69b1eece591bb33d8c154065`
+- No clear indication why this session is chosen.  
